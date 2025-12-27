@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+echo "[INFO] Soft uninstall ZIVPN"
+
+systemctl stop zivpn 2>/dev/null || true
+systemctl disable zivpn 2>/dev/null || true
+
+rm -f /usr/local/bin/zivpn
+rm -f /etc/systemd/system/zivpn.service
+
+systemctl daemon-reload
+systemctl reset-failed
+
+echo "[OK] ZIVPN binary removed"
+echo "[INFO] Config & cert tetap aman di /etc/zivpn"
